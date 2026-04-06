@@ -1,0 +1,25 @@
+manifest_version: 2
+type: DCM_PROJECT
+default_target: prod
+
+targets:
+  prod:
+    account_identifier: "SFSEEUROPE-DEMO_MDAEPPEN"
+    project_name: CRM_PRD.PUBLIC.CRM_DCM_PRD
+    project_owner: DCM_ADMIN
+    templating_config: prod
+
+templating:
+  defaults:
+    sf_env: "PRD"
+    sf_db: "CRM_PRD"
+    wh: "MD_TEST_WH"
+    SCHEMA_CRM_RAW: "CRM_RAW_V001"
+    SCHEMA_CRM_SILVER: "CRM_SILVER_V001"
+  configurations:
+    prod:
+      sf_env: "PRD"
+      sf_db: "CRM_PRD"
+      wh: "MD_TEST_WH"
+      SCHEMA_CRM_RAW: "CRM_RAW_V001"
+      SCHEMA_CRM_SILVER: "CRM_SILVER_V001"

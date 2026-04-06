@@ -1,0 +1,47 @@
+name: DCM Deploy PROD on Merge
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'sources/**'
+      - 'manifest_dev.yml'
+      - 'manifest_prod.yml'
+      - '.github/workflows/**'
+  workflow_dispatch:
+
+jobs:
+  deploy-prod:
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Snowflake CLI
+        uses: snowflakedb/snowflake-cli-action@v2.0
+
+      - name: Fetch Git Repo
+        env:
+          SNOWFLAKE_AUTHENTICATOR: SNOWFLAKE_JWT
+          SNOWFLAKE_ACCOUNT: ${{ secrets.SNOWFLAKE_ACCOUNT }}
+          SNOWFLAKE_USER: ${{ secrets.SNOWFLAKE_USER }}
+          SNOWFLAKE_PRIVATE_KEY_RAW: ${{ secrets.SNOWFLAKE_PRIVATE_KEY }}
+          SNOWFLAKE_ROLE: DCM_ADMIN
+          SNOWFLAKE_WAREHOUSE: MD_TEST_WH
+        run: |
+          snow sql -q "ALTER GIT REPOSITORY INTEGRATIONS.GITHUB.CRM_DCM_REPO FETCH;" -x
+
+      - name: Deploy PROD
+        env:
+          SNOWFLAKE_AUTHENTICATOR: SNOWFLAKE_JWT
+          SNOWFLAKE_ACCOUNT: ${{ secrets.SNOWFLAKE_ACCOUNT }}
+          SNOWFLAKE_USER: ${{ secrets.SNOWFLAKE_USER }}
+          SNOWFLAKE_PRIVATE_KEY_RAW: ${{ secrets.SNOWFLAKE_PRIVATE_KEY }}
+          SNOWFLAKE_ROLE: DCM_ADMIN
+          SNOWFLAKE_WAREHOUSE: MD_TEST_WH
+        run: |
+          snow sql -q "
+          EXECUTE DCM PROJECT CRM_PRD.PUBLIC.CRM_DCM_PRD
+          DEPLOY USING CONFIGURATION prod
+          FROM @INTEGRATIONS.GITHUB.CRM_DCM_REPO/branches/main/
+          DEPLOYMENT_NAME = 'cicd_${{ github.sha }}';
+          " -x

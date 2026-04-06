@@ -1,0 +1,25 @@
+manifest_version: 2
+type: DCM_PROJECT
+default_target: dev
+
+targets:
+  dev:
+    account_identifier: "ZS28104"
+    project_name: CRM_DEV.PUBLIC.CRM_DCM_DEV
+    project_owner: DCM_ADMIN
+    templating_config: dev
+
+templating:
+  defaults:
+    sf_env: "DEV"
+    sf_db: "CRM_DEV"
+    wh: "MD_TEST_WH"
+    SCHEMA_CRM_RAW: "CRM_RAW_V001"
+    SCHEMA_CRM_SILVER: "CRM_SILVER_V001"
+  configurations:
+    dev:
+      sf_env: "DEV"
+      sf_db: "CRM_DEV"
+      wh: "MD_TEST_WH"
+      SCHEMA_CRM_RAW: "CRM_RAW_V001"
+      SCHEMA_CRM_SILVER: "CRM_SILVER_V001"
