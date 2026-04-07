@@ -62,9 +62,17 @@ CREATE DATABASE IF NOT EXISTS CRM_DEV
 USE DATABASE CRM_DEV;
 
 
--- 8. Create the DCM Project
+-- 8. Create the DCM Projects
 CREATE DCM PROJECT IF NOT EXISTS CRM_DEV.PUBLIC.CRM_DCM_DEV
   COMMENT = 'DCM Project for CRM domain - DEV environment';
+
+-- 9. Create CRM_PRD database
+CREATE DATABASE IF NOT EXISTS CRM_PRD
+  COMMENT = 'CRM domain - PROD environment';
+
+-- 10. Create the PROD DCM Project
+CREATE DCM PROJECT IF NOT EXISTS CRM_PRD.PUBLIC.CRM_DCM_PRD
+  COMMENT = 'DCM Project for CRM domain - PROD environment';
 
 -- ============================================================
 -- DONE. After running this, return to Cortex Code to continue.
