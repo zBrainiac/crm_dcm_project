@@ -1,7 +1,3 @@
-# Generated at runtime by deploy.sh
-**/manifest.yml
-!**/manifest_*.yml
-
 # OS
 .DS_Store
 Thumbs.db
