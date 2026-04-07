@@ -39,9 +39,4 @@ jobs:
           SNOWFLAKE_ROLE: DCM_ADMIN
           SNOWFLAKE_WAREHOUSE: MD_TEST_WH
         run: |
-          snow sql -q "
-          EXECUTE DCM PROJECT CRM_PRD.PUBLIC.CRM_DCM_PRD
-          DEPLOY USING CONFIGURATION prod
-          FROM @INTEGRATIONS.GITHUB.CRM_DCM_REPO/branches/main/
-          DEPLOYMENT_NAME = 'cicd_${{ github.sha }}';
-          " -x
+          snow sql -q "EXECUTE DCM PROJECT CRM_PRD.PUBLIC.CRM_DCM_PRD DEPLOY USING CONFIGURATION prod FROM @INTEGRATIONS.GITHUB.CRM_DCM_REPO/branches/main/ DEPLOYMENT_NAME = 'cicd_${{ github.sha }}';" -x
