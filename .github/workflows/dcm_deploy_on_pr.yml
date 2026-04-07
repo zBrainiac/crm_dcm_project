@@ -15,7 +15,7 @@ jobs:
   plan:
     runs-on: self-hosted
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Install Snowflake CLI
         uses: snowflakedb/snowflake-cli-action@v2.0
@@ -43,7 +43,7 @@ jobs:
           snow sql -q "EXECUTE DCM PROJECT CRM_DEV.PUBLIC.CRM_DCM_DEV PLAN USING CONFIGURATION dev FROM '@INTEGRATIONS.GITHUB.CRM_DCM_REPO/branches/${{ github.head_ref }}/' ;" -x --format json > plan_output.json
 
       - name: Post Plan as PR Comment
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           script: |
             const fs = require('fs');
@@ -59,7 +59,7 @@ jobs:
     needs: plan
     runs-on: self-hosted
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Install Snowflake CLI
         uses: snowflakedb/snowflake-cli-action@v2.0
@@ -88,7 +88,7 @@ jobs:
 
       - name: Post Deploy Result as PR Comment
         if: always()
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           script: |
             const status = '${{ job.status }}' === 'success' ? '✅' : '❌';
