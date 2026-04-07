@@ -11,7 +11,7 @@ on:
 
 jobs:
   deploy-prod:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     environment: production
     steps:
       - uses: actions/checkout@v4
