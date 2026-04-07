@@ -32,7 +32,32 @@ This repository contains a complete, production-ready example of a **CRM domain*
 
 The script uploads all definition files to the stage, runs `EXECUTE DCM PROJECT ... PLAN` to show a human-readable changeset, then prompts before `DEPLOY`.
 
-**3. CI/CD** — Push to `main` triggers GitHub Actions: automatic DEV deploy, gated PROD deploy with manual approval.
+**3. CI/CD setup (key-pair auth)**
+
+Generate an RSA key pair for the CI service user:
+```bash
+# 1. Generate private key (PKCS#8, unencrypted)
+openssl genrsa 2048 | openssl pkcs8 -topk8 -inform PEM -out rsa_key.p8 -nocrypt
+
+# 2. Extract public key
+openssl rsa -in rsa_key.p8 -pubout -out rsa_key.pub
+
+# 3. Set public key on the Snowflake CI user (run as ACCOUNTADMIN)
+#    Strip the -----BEGIN/END PUBLIC KEY----- headers first:
+grep -v "PUBLIC KEY" rsa_key.pub | tr -d '\n'
+```
+```sql
+ALTER USER DCM_CI_SVC SET RSA_PUBLIC_KEY = '<paste key without headers>';
+```
+
+Store these GitHub secrets (`Settings > Secrets > Actions`):
+| Secret | Value |
+|--------|-------|
+| `SNOWFLAKE_ACCOUNT` | `<org>-<account>` (e.g. `sfseeurope-demo_mdaeppen`) |
+| `SNOWFLAKE_USER` | `DCM_CI_SVC` |
+| `SNOWFLAKE_PRIVATE_KEY` | Full content of `rsa_key.p8` (including `-----BEGIN/END PRIVATE KEY-----`) |
+
+Push to `main` triggers GitHub Actions: automatic DEV deploy, gated PROD deploy with manual approval.
 
 **4. Adding objects** — Add a new `.sql` file under `sources/definitions/`, use `DEFINE` statements with Jinja variables, and deploy.
 
