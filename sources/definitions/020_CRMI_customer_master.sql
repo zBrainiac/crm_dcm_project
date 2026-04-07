@@ -61,7 +61,7 @@ COMMENT = 'Customer master data with SCD Type 2 support. Multiple records per cu
 
 
 
-CREATE OR REPLACE TABLE CRMI_RAW_TB_ADDRESSES (
+DEFINE TABLE {{ sf_db }}.{{ SCHEMA_CRM_RAW }}.CRMI_RAW_TB_ADDRESSES (
     CUSTOMER_ID VARCHAR(30) NOT NULL COMMENT 'Reference to customer (foreign key to CRMI_RAW_TB_CUSTOMER)',
     STREET_ADDRESS VARCHAR(200) NOT NULL WITH TAG (SENSITIVITY_LEVEL='top_secret') COMMENT 'Street address (localized format)',
     CITY VARCHAR(100) NOT NULL WITH TAG (SENSITIVITY_LEVEL='restricted') COMMENT 'City name (localized to country)',
