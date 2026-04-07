@@ -59,16 +59,3 @@ DEFINE TABLE {{ sf_db }}.{{ SCHEMA_CRM_RAW }}.CRMI_RAW_TB_CUSTOMER (
 )
 COMMENT = 'Customer master data with SCD Type 2 support. Multiple records per customer, uniquely identified by (CUSTOMER_ID, INSERT_TIMESTAMP_UTC). Address data stored separately in CRMI_RAW_TB_ADDRESSES.';
 
-
-DEFINE TABLE {{ sf_db }}.{{ SCHEMA_CRM_RAW }}.CRMI_RAW_TB_ADDRESSES (
-    CUSTOMER_ID VARCHAR(30) NOT NULL COMMENT 'Reference to customer (foreign key to CRMI_RAW_TB_CUSTOMER)',
-    STREET_ADDRESS VARCHAR(200) NOT NULL COMMENT 'Street address (localized format)',
-    CITY VARCHAR(100) NOT NULL COMMENT 'City name (localized to country)',
-    STATE VARCHAR(100) COMMENT 'State/Region (where applicable for the country)',
-    ZIPCODE VARCHAR(20) NOT NULL COMMENT 'Postal code (country-specific format)',
-    COUNTRY VARCHAR(50) NOT NULL COMMENT 'Customer country (12 EMEA countries supported)',
-    INSERT_TIMESTAMP_UTC TIMESTAMP_NTZ NOT NULL COMMENT 'UTC timestamp when this address record was inserted (for SCD Type 2)',
-    
-    CONSTRAINT PK_CRMI_RAW_TB_ADDRESSES PRIMARY KEY (CUSTOMER_ID, INSERT_TIMESTAMP_UTC)
-)
-COMMENT = 'Customer address base table with append-only structure (SCD Type 2). Multiple records per customer are allowed, uniquely identified by (CUSTOMER_ID, INSERT_TIMESTAMP_UTC). Dynamic tables in CRM_AGG_001 provide current and historical views.';
