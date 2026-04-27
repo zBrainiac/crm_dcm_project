@@ -5,8 +5,7 @@
 --
 -- OVERVIEW:
 -- Customer master data with SCD Type 2 support for tracking
--- attribute changes over time. Includes automated CSV ingestion
--- pipeline (stage → file format → task).
+-- attribute changes over time.
 --
 -- Supports 11 EMEA countries with localized customer data:
 -- Norway, Netherlands, Sweden, Germany, France, Italy,
@@ -52,7 +51,7 @@ DEFINE TABLE {{ sf_db }}.{{ SCHEMA_CRM_RAW }}.CRMI_RAW_TB_CUSTOMER (
       COMMENT 'Risk classification (LOW, MEDIUM, HIGH)',
     CREDIT_SCORE_BAND       VARCHAR(20)
       COMMENT 'Credit score band (POOR, FAIR, GOOD, VERY_GOOD, EXCELLENT)',
-    INSERT_TIMESTAMP_UTC    TIMESTAMP_NTZ  NOT NULL
+    INSERT_TIMESTAMP_UTC    TIMESTAMP_TZ  NOT NULL
       COMMENT 'UTC timestamp when this customer record version was inserted (for SCD Type 2)',
 
     CONSTRAINT PK_CRMI_RAW_TB_CUSTOMER PRIMARY KEY (CUSTOMER_ID, INSERT_TIMESTAMP_UTC)

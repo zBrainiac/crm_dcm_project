@@ -10,8 +10,8 @@
 --
 -- OBJECTS DEFINED:
 -- ┌─ ROLES (2):
--- │  ├─ CRM_{{ sf_env }}_FR_INGEST    — Read+write RAW, read SILVER
--- │  └─ CRM_{{ sf_env }}_FR_ANALYTICS — Read-only RAW + SILVER
+-- │  ├─ CRM_{{ sf_env }}_FR_INGEST    — Read+write RAW, read CUR
+-- │  └─ CRM_{{ sf_env }}_FR_ANALYTICS — Read-only RAW + CUR
 -- ============================================================
 
 DEFINE ROLE CRM_{{ sf_env }}_FR_INGEST;

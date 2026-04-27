@@ -14,12 +14,12 @@ templating:
     sf_env: "DEV"
     sf_db: "CRM_DEV"
     wh: "MD_TEST_WH"
-    SCHEMA_CRM_RAW: "CRM_RAW_V001"
-    SCHEMA_CRM_SILVER: "CRM_SILVER_V001"
+    SCHEMA_CRM_RAW: "CRM_RAW_v001"
+    SCHEMA_CRM_CUR: "CRM_CUR_v001"
   configurations:
     dev:
       sf_env: "DEV"
       sf_db: "CRM_DEV"
       wh: "MD_TEST_WH"
-      SCHEMA_CRM_RAW: "CRM_RAW_V001"
-      SCHEMA_CRM_SILVER: "CRM_SILVER_V001"
+      SCHEMA_CRM_RAW: "CRM_RAW_v001"
+      SCHEMA_CRM_CUR: "CRM_CUR_v001"

@@ -68,8 +68,8 @@ Available Jinja variables (set per environment in `manifest_*.yml`):
 | `{{ sf_env }}` | `DEV` | `PRD` | Environment suffix for roles, grants |
 | `{{ sf_db }}` | `CRM_DEV` | `CRM_PRD` | Target database name |
 | `{{ wh }}` | `MD_TEST_WH` | `MD_TEST_WH` | Warehouse for dynamic tables |
-| `{{ SCHEMA_CRM_RAW }}` | `CRM_RAW_V001` | `CRM_RAW_V001` | Raw ingestion schema |
-| `{{ SCHEMA_CRM_SILVER }}` | `CRM_SILVER_V001` | `CRM_SILVER_V001` | Curated/silver schema |
+| `{{ SCHEMA_CRM_RAW }}` | `CRM_RAW_v001` | `CRM_RAW_v001` | Raw ingestion schema |
+| `{{ SCHEMA_CRM_CUR }}` | `CRM_CUR_v001` | `CRM_CUR_v001` | Curated schema |
 
 ## References
 
