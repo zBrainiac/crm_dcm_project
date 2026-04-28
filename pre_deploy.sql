@@ -1,0 +1,12 @@
+CREATE DATABASE IF NOT EXISTS CRM_DEV
+    COMMENT = 'CRM domain development database';
+
+USE DATABASE CRM_DEV;
+
+CREATE SCHEMA IF NOT EXISTS CRM_RAW_v001
+    COMMENT = 'RAW layer - CRM customer data landing zone';
+
+CREATE SCHEMA IF NOT EXISTS CRM_CUR_v001
+    COMMENT = 'CUR layer - curated analytics-ready customer data';
+
+CREATE DCM PROJECT IF NOT EXISTS CRM_DEV.PUBLIC.CRM_DCM_DEV;

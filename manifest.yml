@@ -1,0 +1,25 @@
+manifest_version: 2
+type: DCM_PROJECT
+default_target: DEV
+
+targets:
+  DEV:
+    account_identifier: SFSEEUROPE-ZS28104
+    project_name: CRM_DEV.PUBLIC.CRM_DCM_DEV
+    project_owner: CICD
+    templating_config: DEV
+
+templating:
+  defaults:
+    sf_env: 'DEV'
+    sf_db: 'CRM_DEV'
+    wh: 'MD_TEST_WH'
+    SCHEMA_CRM_RAW: 'CRM_RAW_v001'
+    SCHEMA_CRM_CUR: 'CRM_CUR_v001'
+  configurations:
+    DEV:
+      sf_env: 'DEV'
+      sf_db: 'CRM_DEV'
+      wh: 'MD_TEST_WH'
+      SCHEMA_CRM_RAW: 'CRM_RAW_v001'
+      SCHEMA_CRM_CUR: 'CRM_CUR_v001'
