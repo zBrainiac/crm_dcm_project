@@ -1,13 +1,13 @@
 manifest_version: 2
 type: DCM_PROJECT
-default_target: DEV
+default_target: 'DEV'
 
 targets:
   DEV:
     account_identifier: SFSEEUROPE-ZS28104
-    project_name: CRM_DEV.PUBLIC.CRM_DCM_DEV
+    project_name: 'CRM_DEV.PUBLIC.CRM_DCM_DEV'
     project_owner: CICD
-    templating_config: DEV
+    templating_config: 'DEV'
 
 templating:
   defaults:

@@ -10,7 +10,7 @@ if [[ -f /.dockerenv ]] || grep -qE '/docker/|/lxc/' /proc/1/cgroup 2>/dev/null;
   WORKFLOW_FILE="/home/docker/actions-runner/_work/$PROJECT_KEY/$PROJECT_KEY/.github/workflows/update-local-repo.yml"
 elif [[ "$(uname)" == "Darwin" ]]; then
   echo "Running on macOS"
-  WORKFLOW_FILE="$HOME/workspace/mother-of-all-Projects/.github/workflows/update-local-repo.yml"
+  WORKFLOW_FILE="$(pwd)/.github/workflows/update-local-repo.yml"
 else
   echo "Unknown system, defaulting to current dir"
   WORKFLOW_FILE="$(pwd)/.github/workflows/update-local-repo.yml"
@@ -18,7 +18,7 @@ fi
 
 
 # === CONFIGURATION ===
-EXPECTED_HASH="be131dee34e547276af3f4746b8192c4079ca8c726c7d06f2935484588d6f6ca"
+EXPECTED_HASH="ed3f76a58d3a425e2f2a588fe18c26b2172c62d5881a088f661df71eb2abbfaf"
 
 # === VALIDATION ===
 
