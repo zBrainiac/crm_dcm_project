@@ -1,25 +1,36 @@
 manifest_version: 2
 type: DCM_PROJECT
-default_target: 'DEV'
+default_target: dev
 
 targets:
-  DEV:
-    account_identifier: SFSEEUROPE-ZS28104
-    project_name: 'CRM_DEV.PUBLIC.CRM_DCM_DEV'
-    project_owner: CICD
-    templating_config: 'DEV'
+  dev:
+    account_identifier: "ZS28104"
+    project_name: CRM_DEV.CRM_DCM.CRM_DCM_DEV
+    project_owner: DCM_ADMIN
+    templating_config: dev
+  prod:
+    account_identifier: "SFSEEUROPE-DEMO_MDAEPPEN"
+    project_name: CRM_PRD.CRM_DCM.CRM_DCM_PRD
+    project_owner: DCM_ADMIN
+    templating_config: prod
 
 templating:
   defaults:
-    sf_env: 'DEV'
-    sf_db: 'CRM_DEV'
-    wh: 'MD_TEST_WH'
-    SCHEMA_CRM_RAW: 'CRM_RAW_v001'
-    SCHEMA_CRM_CUR: 'CRM_CUR_v001'
+    sf_env: "DEV"
+    sf_db: "CRM_DEV"
+    wh: "MD_TEST_WH"
+    SCHEMA_CRM_RAW: "CRM_RAW_v001"
+    SCHEMA_CRM_CUR: "CRM_CUR_v001"
   configurations:
-    DEV:
-      sf_env: 'DEV'
-      sf_db: 'CRM_DEV'
-      wh: 'MD_TEST_WH'
-      SCHEMA_CRM_RAW: 'CRM_RAW_v001'
-      SCHEMA_CRM_CUR: 'CRM_CUR_v001'
+    dev:
+      sf_env: "DEV"
+      sf_db: "CRM_DEV"
+      wh: "MD_TEST_WH"
+      SCHEMA_CRM_RAW: "CRM_RAW_v001"
+      SCHEMA_CRM_CUR: "CRM_CUR_v001"
+    prod:
+      sf_env: "PRD"
+      sf_db: "CRM_PRD"
+      wh: "MD_TEST_WH"
+      SCHEMA_CRM_RAW: "CRM_RAW_v001"
+      SCHEMA_CRM_CUR: "CRM_CUR_v001"

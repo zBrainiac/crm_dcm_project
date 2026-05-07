@@ -13,7 +13,7 @@ This repository contains a complete, production-ready example of a **CRM domain*
 | File | Purpose |
 |------|---------|  
 | `deploy.sh` | Generic deployer -- uploads definitions, runs PLAN, prompts, then DEPLOY |
-| `manifest_*.yml` | Per-environment manifest with Jinja templating (DEV/PROD) |
+| `manifest.yml` | Combined manifest with Jinja templating (DEV/PROD targets) |
 | `dcm.conf` | Environment configuration (stage, project, config name) |
 | `00_setup_accountadmin.sql` | One-time setup: DCM_ADMIN role, database, stage, project |
 | `sources/definitions/010-030` | Schemas, tables (SCD Type 2), dynamic tables (OMG Party Model) |
@@ -61,7 +61,7 @@ Push to `main` triggers GitHub Actions: automatic DEV deploy, gated PROD deploy 
 
 **4. Adding objects** — Add a new `.sql` file under `sources/definitions/`, use `DEFINE` statements with Jinja variables, and deploy.
 
-Available Jinja variables (set per environment in `manifest_*.yml`):
+Available Jinja variables (set per environment in `manifest.yml`):
 
 | Variable | DEV | PROD | Usage |
 |----------|-----|------|-------|

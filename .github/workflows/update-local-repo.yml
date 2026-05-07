@@ -10,7 +10,7 @@ jobs:
     uses: zbrainiac-labs/DataOpsBackbone/.github/workflows/dataops-pipeline.yml@main
     with:
       SOURCE_DATABASE: CRM_DEV
-      SOURCE_SCHEMA: CRM_RAW_v001
-      DCM_PROJECT_IDENTIFIER: CRM_DEV.PUBLIC.CRM_DCM_DEV
+      SOURCE_SCHEMA: CRM_DCM
+      DCM_PROJECT_IDENTIFIER: CRM_DEV.CRM_DCM.CRM_DCM_DEV
       DCM_TARGET: DEV
     secrets: inherit

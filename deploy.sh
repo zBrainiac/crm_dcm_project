@@ -11,7 +11,7 @@
 #
 # The script expects these files in the same directory:
 #   - dcm.conf              — environment config (sourced)
-#   - manifest_<env>.yml    — manifest per environment
+#   - manifest.yml          — combined manifest (all environments)
 #   - sources/definitions/  — SQL definition files
 #
 # Features:
@@ -198,11 +198,10 @@ echo " Stage:      ${STAGE}"
 echo " Connection: ${CONN_FLAG:-<default>}"
 echo "=========================================="
 
-# --- 1. Prepare and upload manifest ---
+# --- 1. Upload manifest ---
 echo "[1/5] Manifest..."
-cp "${PROJECT_PATH}/${MANIFEST}" "${PROJECT_PATH}/manifest.yml"
 upload_file \
-  "${PROJECT_PATH}/manifest.yml" \
+  "${PROJECT_PATH}/${MANIFEST}" \
   "${STAGE}/" \
   "manifest.yml"
 
